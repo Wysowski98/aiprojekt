@@ -1,2 +1,2 @@
 # aiprojekt
-Aplikacja webowa - manager kwiatów
+Aplikacja webowa - manager kwiatów (nazwa robocza flowerly) 
