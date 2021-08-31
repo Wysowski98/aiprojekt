@@ -78,10 +78,13 @@ namespace flowerlyAPI
 
         private void SetIOC(IServiceCollection services)
         {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMyFlowerService, MyFlowersService>();
+            services.AddScoped<IFlowersService, FlowersService>();
             services.AddScoped<IFlowersSeed, FlowersSeed>();
+            services.AddScoped<IStatisticsService, StatisticsService>();
+            services.AddTransient<IMailSenderService, MailSenderService>();
         }
-
-
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

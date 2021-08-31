@@ -14,29 +14,35 @@ namespace flowerlyAPI.Controllers
     [ApiController]
     public class MyFlowersController : ControllerBase
     {
+        private readonly IMyFlowerService _flowerService;
+        public MyFlowersController(IMyFlowerService flowerSevice)
+        {
+            _flowerService = flowerSevice;
+        }
 
         [HttpGet]
         public async Task<List<MyFlowers>> GetMyFlowers(string id)
         {
-            return new List<MyFlowers>();
+            return await _flowerService.GetMyFlowers(id);
         }
 
         [HttpGet("dates")]
         public async Task<List<IrrigationDates>> GetMyFlowersIrrigationDates(string userId)
         {
-            return new List<IrrigationDates>();
+            return await _flowerService.GetMyIrrigationDates(userId);
         }
 
         [HttpGet("history")]
         public async Task<List<IrrigationDates>> GetMyFlowersIrrigationHistory(int flowerId)
         {
-            return new List<IrrigationDates>();
+            return await _flowerService.GetMyFlowersHistory(flowerId);
         }
 
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> AddNewFlower(MyFlowersDto flowersDto)
         {
+            await _flowerService.AddFlower(flowersDto);
             return Ok();
         }
 
@@ -44,6 +50,7 @@ namespace flowerlyAPI.Controllers
         [Route("update")]
         public async Task<IActionResult> UpdateFlower(MyFlowersUpdateCommand flowersDto)
         {
+            await _flowerService.UpdateFlower(flowersDto);
             return Ok();
         }
 
@@ -51,9 +58,16 @@ namespace flowerlyAPI.Controllers
         [Route("delete")]
         public async Task<IActionResult> DeleteFlower(int myFlowersId)
         {
+            await _flowerService.DeleteFlower(myFlowersId);
             return Ok();
         }
 
-
+        [HttpGet]
+        [Route("emailConfirmation/{code}/{history}")]
+        public async Task<IActionResult> AddNewFlower(string code, int history)
+        {
+            await _flowerService.HandleConfirmation(code, history);
+            return Ok("Irregation Approved");
+        }
     }
 }

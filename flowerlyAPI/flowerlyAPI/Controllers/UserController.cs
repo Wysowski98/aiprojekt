@@ -13,10 +13,16 @@ namespace flowerlyAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userSevice;
+        public UserController(IUserService userSevice)
+        {
+            _userSevice = userSevice;
+        }
+
         [HttpPut]
         public async Task UpsertUser(UserDto user)
         {
-            //TODO add user
+            await _userSevice.SaveUser(user);
         }
     }
 }
