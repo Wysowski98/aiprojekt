@@ -1,0 +1,42 @@
+<div *ngIf="auth.user$| async as isLoggedIn">
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <a mat-button routerLink="/profile">
+      <span>Flowerly</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button (click)="logout()"> <mat-icon>logout</mat-icon> </a>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav color="primary" #sidenav mode="over" opened= "{{isOpen}}">
+      <mat-nav-list>
+        <h1 matSubheader> Moje kwiaty </h1>
+        <div class="sidenav-spacer"></div>
+        <a routerLink="/profile" mat-list-item class="item" (click)="toggle()">
+          <mat-icon>face</mat-icon>
+          <a class="btn-item"> Mój profil </a>
+        </a>
+        <mat-divider></mat-divider>
+        <a routerLink="/flowers" mat-list-item class="item" (click)="toggle()">
+          <mat-icon>add</mat-icon>
+          <a class="btn-item"> Dodaj kwiat</a>
+        </a>
+        <mat-divider></mat-divider>
+        <a routerLink="/dashboard" mat-list-item class="item" (click)="toggle()">
+          <mat-icon>dashboard</mat-icon>
+          <a class="btn-item"> Dashboard</a>
+        </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

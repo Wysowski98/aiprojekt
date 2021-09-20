@@ -1,0 +1,41 @@
+.mat-toolbar{
+  background-color: #00CC76;
+}
+.mat-sidenav {
+  min-width: 11em;
+  text-align: center;
+  background-color:#fafafa;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav-spacer{
+  margin-top: 1em;
+}
+
+a{
+  font-size: medium;
+  font-weight: 450;
+  text-align: center;
+}
+
+.item{
+
+}
+
+.btn-item{
+  margin-left: 10px;
+}
+
+.item:hover{
+  color: #00CC76;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+div {
+  overflow: inherit;
+}

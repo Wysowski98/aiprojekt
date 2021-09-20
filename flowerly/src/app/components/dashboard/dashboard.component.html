@@ -1,0 +1,92 @@
+<mat-grid-list cols="1" rowHeight="1:0.35">
+  <mat-grid-tile >
+    <div class="card-chart" style="text-align: center;">
+    <mat-card class="card-chart mat-elevation-z8">
+      <h4> Liczba podlań w miesiącu </h4>
+      <mat-card-content >
+        <div class="chart">
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div *ngIf="selectedflower !== undefined">
+    <mat-form-field appearance="fill">
+      <mat-label>Wybierz kwiat</mat-label>
+      <mat-select [(ngModel)]="selectedflower" (ngModelChange)="onChange($event)">
+        <mat-option *ngFor="let myflower of myflowersList" [value]="myflower">
+          {{myflower.flower.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-card class="card mat-elevation-z8">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image" [ngStyle]="{ 'background-image': 'url(' + selectedflower.flower.imageUrl + ')'}"> </div>
+        <mat-card-title> {{selectedflower.flower.name}}</mat-card-title>
+        <mat-card-subtitle>{{selectedflower.flower.species}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{selectedflower.flower.imageUrl }}" alt="flower foto">
+      <mat-card-content>
+        <p>
+          Nazwa: {{selectedflower.flower.name}} <br>
+          Gatunek: {{selectedflower.flower.species}} <br>
+          Kraj pochodzenia: {{selectedflower.flower.nationality}} <br>
+          Zalecana liczba podlewań w tygodniu: {{selectedflower.flower.irrigationPerWeek}} <br>
+          Ilosc wody do podlania: {{waterAmountTrans[selectedflower.flower.waterAmount]}} <br>
+          Ustawione dni podlewań: <a *ngFor="let day of selectedflower.irrigationDates"> {{ day.dayName }}, </a>
+        </p>
+      </mat-card-content>
+    </mat-card>
+    </div>
+
+    <div class="circle-progress " *ngIf="selectedflower!== undefined">
+      <div *ngIf="selectedflower.irrigationDates.length !== 0; else noDates">
+      <h3> Do kolejnego podlewania pozostało {{daysToNextIrr}} dni </h3>
+        <circle-progress
+      [percent]="calculateProgress()"
+      [radius]="100"
+      [outerStrokeWidth]="10"
+      [innerStrokeWidth]="5"
+      [outerStrokeColor]="'#ffa1b5'"
+      [innerStrokeColor]="'#86c7f3'"
+      [animation]="true"
+      [animationDuration]="300"
+    ></circle-progress>
+    </div>
+    <ng-template #noDates><h3> Ten Kwiat nie ma zaplanowanych podlań</h3></ng-template>
+  </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="card-chart mat-elevation-z8" *ngIf="this.selectedflower !==undefined" style="text-align: center;">
+
+      <h4>Wykres podlań od czasu dla: <h3 style="display: inline;">{{this.selectedflower.flower.name}}</h3> </h4>
+      <mat-card-content >
+        <div class="chart">
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [datasets]="barChartDataForFlower"
+                [labels]="barChartLabelsForFlower"
+                [options]="barChartOptionsForFlowers"
+                [legend]="false"
+                [chartType]="barChartTypeForFlower">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

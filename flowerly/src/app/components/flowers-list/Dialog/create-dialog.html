@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Stwórz swój kwiat</h1>
+<div mat-dialog-content [ngStyle]="{ 'text-align': 'center'}">
+  <p>Podaj dane kwiatka</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Nazwa</mat-label>
+    <input matInput [(ngModel)]="data.name.value">
+    <mat-error *ngIf="data.name.invalid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Gatunek</mat-label>
+    <input matInput [(ngModel)]="data.species.value">
+    <mat-error *ngIf="data.species.invalid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Kraj pochodzenia</mat-label>
+    <input matInput [(ngModel)]="data.nationality.value">
+    <mat-error *ngIf="data.nationality.invalid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Liczba podlewań w tygodniu</mat-label>
+    <input matInput [(ngModel)]="data.irrigationPerWeek.value">
+    <mat-error *ngIf="data.irrigationPerWeek.invalid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Ilosc wody do podlania w ml</mat-label>
+    <input matInput [(ngModel)]="data.waterAmount.value">
+    <mat-error *ngIf="data.waterAmount.invalid">To pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Url zdjęcia</mat-label>
+    <input matInput [(ngModel)]="data.imageUrl.value">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="!data.name.value || !data.species.value || !data.nationality.value ||
+  !data.irrigationPerWeek.value || !data.waterAmount.value">Ok</button>
+</div>

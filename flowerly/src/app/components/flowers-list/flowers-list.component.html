@@ -1,0 +1,48 @@
+<mat-grid-list cols="2" rowHeight="1.01:1">
+  <mat-grid-tile>
+    <mat-card class="card mat-elevation-z8">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"
+          [ngStyle]="{'background-image':' url(' + 'assets/placeholder.png' + ')'}"> </div>
+        <mat-card-title> Stwórz nowy kwiatu </mat-card-title>
+        <mat-card-subtitle>Nowy kwiat</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="assets/placeholder.png" alt="flower foto">
+      <mat-card-content>
+        <p>
+          Nazwa: <br>
+          Gatunek: <br>
+          Kraj pochodzenia: <br>
+          Zalecana liczba podlewań w tygodniu: <br>
+          Ilosc wody do podlania:
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="basic" (click)="createNewType()">Stwórz</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let flower of myflowers">
+    <mat-card class="card mat-elevation-z8">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image" [ngStyle]="{ 'background-image': 'url(' + flower.imageUrl + ')'}">
+        </div>
+        <mat-card-title> {{flower.name}}</mat-card-title>
+        <mat-card-subtitle>{{flower.species}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{flower.imageUrl}}" alt="flower foto">
+      <mat-card-content>
+        <p>
+          Nazwa: {{flower.name}} <br>
+          Gatunek: {{flower.species}} <br>
+          Kraj pochodzenia: {{flower.nationality}} <br>
+          Zalecana ilosc podlewań w tygodniu: {{flower.irrigationPerWeek}} <br>
+          Ilosc wody do podlania: {{waterAmountTrans[flower.waterAmount]}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="basic" (click)="addFlowerToAccount(flower.id)">Dodaj</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

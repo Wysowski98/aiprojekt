@@ -1,0 +1,61 @@
+.container
+{
+  position: relative;
+}
+
+.mat-card
+{
+  text-align: center;
+}
+
+.login-card
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 15%;
+  min-height: 30%;
+}
+
+mat-card-header
+{
+  display: block;
+}
+
+.logo
+{
+  height: 50px;
+  width: 70px;
+}
+
+.content{
+  font-size: large;
+  font-weight: 350;
+}
+
+.content-color{
+  font-size: large;
+  font-weight: 350;
+  color: #00CC76;
+}
+
+.title
+{
+  margin: 0;
+  font-size: large;
+  font-weight: 450;
+  margin-bottom: 10%;
+}
+
+.login-field,.password-field
+{
+  display: block;
+  width: 300px;
+  margin: 5px;
+}
+
+.icon
+{
+ color: green;
+}

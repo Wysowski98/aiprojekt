@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Dni nawadniania</h1>
+<div mat-dialog-content>
+  <p>Wybierz dzień nawadniania</p>
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.Day" name="day">
+      <mat-option *ngFor="let day of daysOptions" [value]="day">
+        {{day.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
